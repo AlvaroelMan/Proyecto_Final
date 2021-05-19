@@ -6,9 +6,15 @@ import DataTable from 'react-data-table-component';
   //  { id: 1, año: "2000", nombre: 'Alvert' }, { id: 2, año: "3000", nombre: 'Gorge' },
 //]
 const axios = require('axios');
-
-
-
+var resultado;
+axios.get('http://localhost:3001/api/todos')
+  .then(function (response) {
+    resultado = response;
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
 
 
 const columnas = [{
@@ -29,34 +35,17 @@ const paginacionAjustes = {
     selectAllRowsItemText: 'Todos',
 }
 
-export default class App extends React.Component {
-  state = {
-    resultado: []
-  }  
-
-  componentDidMount(){
-    axios.get('http://localhost:3001/api/todos')
-  .then(res => {
-
-    const resultado = res.data;
-    this.setState({resultado});
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
-  }
-  render(){
-  return ( 
+function App() {
+    return ( 
         <div>
         <DataTable columns = { columnas }
-        data = { this.state.resultado }
+        data = { resultado }
         title = "Tabla clientes"
         pagination paginationComponentOptions = { paginacionAjustes }
         fixedHeader fixedHeaderScrollHeight = "600px" 
         />
         </div>
     )
-  }
 }
 
+export default App;
