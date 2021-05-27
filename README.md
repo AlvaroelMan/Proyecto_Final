@@ -15,3 +15,6 @@ Iconos acceso rápido
 Script en mrbogart para recoger datos formulario
 Pestaña estadística (gráficos)
 Mail automatico anual
+
+DOCUMENTACIÓ DE LA API
+https://app.swaggerhub.com/apis/Jcuestaa/MyCompanyApi/1.0.0
